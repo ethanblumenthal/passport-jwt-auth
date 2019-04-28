@@ -3,9 +3,9 @@ const http = require('http')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const router = require('./router')
+const { mongoURI } = require('./config')
 const app = express()
 
-const mongoURI = 'mongodb+srv://ethanblumenthal:oi9zArr8MUV72amF@auth-kuqgg.mongodb.net/test?retryWrites=true'
 mongoose.connect(mongoURI, { useNewUrlParser: true })
 
 app.use(morgan('combined'))
