@@ -19,11 +19,17 @@ userSchema.pre('save', next => {
 
     bcrypt.hash(user.password, salt, null, (err, hash) => {
       if (err) return next(err)
-
       user.password = hash
       next()
     })
   })
 })
+
+userSchema.methods.comparePassword = (candidatePassword, callback) => {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) return callback(err)
+    callback(null, isMatch)
+  })
+}
 
 mongoose.model('users', userSchema)
