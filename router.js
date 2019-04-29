@@ -1,5 +1,6 @@
 const passport = require('passport')
 const { signin, signup } = require('./controllers/authentication')
+require('./services/passport')
 
 const requireAuth = passport.authenticate('jwt', { session: false })
 const requireSignin = passport.authenticate('local', { session: false })
